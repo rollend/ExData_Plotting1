@@ -1,0 +1,8 @@
+data_file=file.path("E:/Github/ExData_Plotting1/household_power_consumption.txt")
+data<-read.table(data_file,sep=";",na.strings="?",header=TRUE,stringsAsFactors=FALSE)
+data$DateTime<- paste(data$Date,data$Time)
+data$DateTime<-as.POSIXlt(data$DateTime,format="%d/%m/%Y %H:%M:%S")
+dataTU<-subset(data,DateTime>=as.POSIXlt("2007-02-01 00:00:00")&DateTime<as.POSIXlt("2007-02-03 00:00:00"))
+png(file="G:/Github/R/Coursa program data/Explortary data/Project1/plot2.png",width=480,height=480,units='px')
+plot(dataTU$DateTime,dataTU$Global_active_power,ylab='Global Active Power (kilowatts)', xlab="",type='l')
+dev.off()
